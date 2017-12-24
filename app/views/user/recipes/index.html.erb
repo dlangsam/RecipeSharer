@@ -1,0 +1,22 @@
+Recipes
+<%if @recipes.size > 0 %>
+
+    <% @recipes.all.each do |recipe| %>
+
+        <div class = "white user-item" >
+          <a href = "<%=user_recipe_url(current_user.id, recipe.id)%>" class = "item-link">
+            <div class = "item-box">
+              <div class = "item-content">
+                <div class = "item-desc">
+                  <h5><%= recipe.name %></h5>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+    <% end %>
+
+<% end %>
+<%= link_to "Add a new recipe", :new_user_recipe %>
+

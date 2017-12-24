@@ -1,0 +1,28 @@
+
+<h3>Add a recipe</h3>
+<%= form_for [:user, @recipe] do |f| %>
+    <div class = "name">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "field" %>
+    </div>
+    <div class = "description">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "field"%>
+    </div>
+    <div class = "total_time">
+      <%= f.label :total_time %>
+      <%= f.number_field :total_time %> minutes
+    </div>
+    <div class = "prep_time">
+      <%= f.label :prep_time %>
+      <%= f.number_field :prep_time, class: "field"%> minutes
+    </div>
+    <div class = "special_notes">
+      <%= f.label :special_notes %>
+      <%= f.text_field :special_notes, class: "field"%>
+    </div>
+    <div class = "buttons">
+      <%= f.button class: "special-button" %>
+      <%=link_to 'Cancel', user_recipes_path%>
+    </div>
+<% end %>
