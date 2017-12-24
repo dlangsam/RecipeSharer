@@ -4,7 +4,7 @@ Recipes
     <% @recipes.all.each do |recipe| %>
 
         <div class = "white user-item" >
-          <a href = "<%=user_recipe_url(current_user.id, recipe.id)%>" class = "item-link">
+          <a href = "<%=my_recipe_url(current_user.id, recipe.id)%>" class = "item-link">
             <div class = "item-box">
               <div class = "item-content">
                 <div class = "item-desc">
@@ -18,5 +18,5 @@ Recipes
     <% end %>
 
 <% end %>
-<%= link_to "Add a new recipe", :new_user_recipe %>
+<%= link_to "Add a new recipe", :new_my_recipe %>
 

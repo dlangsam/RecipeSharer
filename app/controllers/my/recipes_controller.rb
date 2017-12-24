@@ -1,4 +1,4 @@
-class User::RecipesController < ApplicationController
+class My::RecipesController < ApplicationController
   before_action :authenticate_user!
   def index
     @current_user = current_user
@@ -14,7 +14,7 @@ class User::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params.merge(user_id: current_user.id))
     puts @recipe.inspect
     if @recipe.save
-      redirect_to :user_recipes
+      redirect_to :my_recipes
     else
       puts "recipe failed"
       render 'new'
@@ -23,7 +23,7 @@ class User::RecipesController < ApplicationController
   end
 
   def show
-
+    @recipe = Recipe.find_by(id: params[:format])
   end
 
   private

@@ -1,6 +1,6 @@
 
 <h3>Add a recipe</h3>
-<%= form_for [:user, @recipe] do |f| %>
+<%= form_for [:my, @recipe] do |f| %>
     <div class = "name">
       <%= f.label :name %>
       <%= f.text_field :name, class: "field" %>
@@ -23,6 +23,6 @@
     </div>
     <div class = "buttons">
       <%= f.button class: "special-button" %>
-      <%=link_to 'Cancel', user_recipes_path%>
+      <%=link_to 'Cancel', my_recipes_path%>
     </div>
 <% end %>
