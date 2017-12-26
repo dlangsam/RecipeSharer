@@ -1,6 +1,9 @@
 <div class="nested-fields form-inline">
   <%= f.label :amount %>
-  <%= f.text_field :amount, :class => 'form-control' %>
+  <%= f.number_field :amount, :class => 'form-control' %>
+
+  <%= f.label :unit_type %>
+  <%= f.text_field :unit_type, :class => 'form-control' %>
 
   <% f.object.build_ingredient unless f.object.ingredient %>
 
