@@ -40,6 +40,8 @@
           <%= link_to "Remove Step", "javascript:void(0)", class: "remove_step" %>
       </div>
       <%= link_to "Next Step", "javascript:void(0)", id: "new_step" %><br/>
+      <%= f.label :photo,'Upload new image' %>
+      <%= f.file_field :photo %>
       <%= f.button "Save" %>
     </div>
 <% end %>

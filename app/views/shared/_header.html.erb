@@ -2,7 +2,7 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">RecipeSharer</a>
+  <a class="navbar-brand" href="#"><%=PROJECT_NAME%></a>
   <%if user_signed_in? %>
       <a class="navbar-brand" href="/users/sign_out" data-method="delete">Log out</a>
   <%else%>
