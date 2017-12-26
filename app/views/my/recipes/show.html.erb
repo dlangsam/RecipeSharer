@@ -1,1 +1,15 @@
 <%= @recipe.name %>
+<p>
+  <strong>Ingredients:</strong><br/>
+  <% @recipe.recipe_ingredients.each do |recipe_item| %>
+      <%= "#{recipe_item.amount} #{recipe_item.ingredient.name}" %><br/>
+  <% end %>
+</p>
+<p>
+  <strong>Instructions:</strong><br/>
+  <% @instructions.each do |instruction| %>
+      <%= instruction %><br/>
+  <% end %>
+</p>
+<br/>
+<%= link_to 'Back', my_recipes_path, class: "btn btn-default" %>

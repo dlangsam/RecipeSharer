@@ -1,0 +1,16 @@
+<h1>Edit Recipe</h1>
+<%= form_for @recipe do |f| %>
+    <p>
+      Name: <%= f.text_field :name %>
+    </p>
+    <%= f.fields_for :steps do |task_form| %>
+        <p>
+          Task: <%= task_form.text_field :description %>
+          <%= task_form.check_box :_destroy %>
+          <%= task_form.label :_destroy, "Remove step" %>
+        </p>
+    <% end %>
+    <p>
+      <%= f.submit 'Update recipe' %>
+    </p>
+<% end %>

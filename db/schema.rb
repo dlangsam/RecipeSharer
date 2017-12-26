@@ -35,17 +35,10 @@ ActiveRecord::Schema.define(version: 20171224025128) do
     t.integer "user_id", null: false
     t.string "name", null: false
     t.string "description"
+    t.text "instructions"
     t.string "special_notes"
     t.integer "total_time"
     t.integer "prep_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "steps", force: :cascade do |t|
-    t.string "description", null: false
-    t.integer "recipe_id", null: false
-    t.integer "order", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

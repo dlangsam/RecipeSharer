@@ -4,6 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[5.1]
       t.integer :user_id, null: false
       t.string :name, null: false
       t.string :description
+      t.text :instructions
       t.string :special_notes
       t.integer :total_time
       t.integer :prep_time
