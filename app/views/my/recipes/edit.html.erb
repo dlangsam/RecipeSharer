@@ -1,16 +1,51 @@
-<h1>Edit Recipe</h1>
-<%= form_for @recipe do |f| %>
-    <p>
-      Name: <%= f.text_field :name %>
-    </p>
-    <%= f.fields_for :steps do |task_form| %>
-        <p>
-          Task: <%= task_form.text_field :description %>
-          <%= task_form.check_box :_destroy %>
-          <%= task_form.label :_destroy, "Remove step" %>
-        </p>
-    <% end %>
-    <p>
-      <%= f.submit 'Update recipe' %>
-    </p>
+<%= form_for [:my, @recipe] do |f| %>
+    <% if @recipe.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@recipe.errors.count, "error") %>
+            prohibited this recipe from being saved:
+          </h2>
+          <ul>
+            <% @recipe.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end%>
+          </ul>
+        </div>
+    <%end %>
+    <div class="form-group">
+      <%= f.label :name %>:
+      <%= f.text_field :name, :class => 'form-control' %>
+
+      <div id="ingredients">
+        <label>Ingredients:</label>
+        <%= f.fields_for :recipe_ingredients do |builder| %>
+            <%= render 'recipe_ingredient_fields', f: builder %>
+            <div id="links">
+              <%= link_to_add_association "add Ingredient", f, :recipe_ingredients %><br/>
+            </div>
+        <% end %>
+      </div>
+
+
+
+      <%= f.label :instructions %>:
+      <% unless @instructions.nil? %>
+          <% @instructions.each do |instruction| %>
+              <%= text_field_tag 'recipe[instructions][]', instruction %>
+          <% end %>
+      <% else %>
+          <%= text_field_tag 'recipe[instructions][]', nil, class: 'form-control', placeholder: 'Type the first step' %>
+      <% end %>
+      <div id="recipe_steps">
+        <%= link_to "Remove Step", "javascript:void(0)", class: "remove_step" %>
+      </div>
+      <%= link_to "Next Step", "javascript:void(0)", id: "new_step" %><br/>
+      <%= f.button "Save Changes" %>
+    </div>
 <% end %>
+<%= link_to 'Destroy', my_recipe_path(@recipe),
+            method: :delete,
+            data: { confirm: 'For real?' },
+            class: "btn btn-danger" %>
+</div>
+<%= link_to 'view all recipes', my_recipes_path %>

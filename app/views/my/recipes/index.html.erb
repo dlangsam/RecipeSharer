@@ -4,7 +4,7 @@ Recipes
     <% @recipes.all.each do |recipe| %>
 
         <div class = "white user-item" >
-          <a href = "<%=my_recipe_url(current_user.id, recipe.id)%>" class = "item-link">
+          <a href = "<%=my_recipe_url(recipe.id)%>" class = "item-link">
             <div class = "item-box">
               <div class = "item-content">
                 <div class = "item-desc">

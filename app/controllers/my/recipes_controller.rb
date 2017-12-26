@@ -6,7 +6,6 @@ class My::RecipesController < ApplicationController
   end
 
   def new
-    puts "inside new"
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build.build_ingredient
   end
@@ -23,10 +22,14 @@ class My::RecipesController < ApplicationController
     end
   end
 
+  def edit
+    @recipe = Recipe.find_by(id: params[:id])
+    @instructions = JSON.parse(@recipe.instructions)
+  end
 
   def update
     params[:recipe][:instructions] = params[:recipe][:instructions].to_json
-    @recipe = Recipe.find_by(id: params[:format])
+    @recipe = Recipe.find_by(id: params[:id])
 
     if @recipe.update(recipe_params)
       redirect_to :my_recipes
@@ -35,18 +38,14 @@ class My::RecipesController < ApplicationController
     end
   end
 
-  def edit
-    @recipe = Recipe.find(params[:format])
-    @instructions = JSON.parse(@recipe.instructions)
-  end
-
   def show
-    @recipe = Recipe.find_by(id: params[:format])
+    puts params
+    @recipe = Recipe.find_by(id: params[:id])
     @instructions = JSON.parse(@recipe.instructions)
   end
 
   def destroy
-    @recipe = Recipe.find_by(id: params[:format])
+    @recipe = Recipe.find_by(id: params[:id])
     @recipe.destroy
 
     redirect_to my_recipes_path
