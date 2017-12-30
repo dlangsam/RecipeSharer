@@ -1,5 +1,7 @@
 <%= @recipe.name %>
+<% if @recipe.photo.file? %>
 <%= image_tag @recipe.photo.url(:medium) %>
+<% end %>
 <p>
   <strong>Ingredients:</strong><br/>
   <% @recipe.recipe_ingredients.each do |recipe_item| %>

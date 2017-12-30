@@ -63,6 +63,7 @@
               <% unless @instructions.nil? %>
                   <% @instructions.each do |instruction| %>
                       <%= text_field_tag 'recipe[instructions][]', instruction, class: 'instruction-field form-control' %>
+                      <%= link_to "Remove Step", "javascript:void(0)", class: "remove_step" %>
                   <% end %>
               <% else %>
                   <%= text_field_tag 'recipe[instructions][]', nil, class: 'instruction-field form-control', placeholder: 'Type the first step' %>
@@ -74,7 +75,7 @@
         </div>
         <div class = "row">
           <div class = "col-sm-12">
-            <%= link_to "Next Step", "javascript:void(0)", id: "new_step" %><br/>
+            <%= link_to "Next Step", "javascript:void(0)", class: "new_step" %><br/>
           </div></div>
       </div>
       <div class = "row special-notes">

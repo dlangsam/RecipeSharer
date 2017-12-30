@@ -3,7 +3,7 @@
 var ready;
 ready = function() {
 
-    $("#new_step").on("click", function(obj) {
+    $(".new_step").on("click", function(obj) {
         console.log("new step");
         $("#recipe_steps").append('<input class="new-step form-control" type="text" name="recipe[instructions][]" placeholder="Type next step"><a href="javascript:void(0)" class="remove_step">Remove Step</a>');
     });
