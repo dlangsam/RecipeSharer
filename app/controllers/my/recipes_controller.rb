@@ -51,6 +51,13 @@ class My::RecipesController < ApplicationController
     redirect_to my_recipes_path
   end
 
+  def remove_image
+    @recipe = Recipe.find_by(id: params[:id])
+    @recipe.photo.destroy
+    @recipe.save
+    render 'edit'
+  end
+
 
 
   private

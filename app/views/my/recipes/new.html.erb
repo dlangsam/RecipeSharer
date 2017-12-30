@@ -1,49 +1,105 @@
-<%= form_for [:my, @recipe] do |f| %>
-    <% if @recipe.errors.any? %>
-        <div id="error_explanation">
-        <h2>
-          <%= pluralize(@recipe.errors.count, "error") %>
-          prohibited this recipe from being saved:
-        </h2>
-        <ul>
-          <% @recipe.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-          <% end%>
-        </ul>
+<div class = "row">
+  <%= form_for [:my, @recipe] do |f| %>
+      <% if @recipe.errors.any? %>
+          <div id="error_explanation">
+          <h2>
+            <%= pluralize(@recipe.errors.count, "error") %>
+            prohibited this recipe from being saved:
+          </h2>
+          <ul>
+            <% @recipe.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end%>
+          </ul>
+          </div>
+      <%end %>
+      <div class="form-group">
+
+      </div>
+      <div fieldset class="recipe_1">
+        <div class = "row">
+          <div class = "col-sm-6">
+            <%= f.label :name %>:
+            <%= f.text_field :name, :class => 'form-control' %>
+          </div>
+          <div class = "col-sm-3">
+            <%= f.label :prep_time %>:
+            <%= f.number_field :prep_time, :class => 'form-control' %>
+            minutes
+          </div>
+          <div class = "col-sm-3">
+            <%= f.label :total_time %>:
+            <%= f.number_field :total_time, :class => 'form-control' %>
+            minutes
+          </div>
         </div>
-    <%end %>
-    <div class="form-group">
-      <%= f.label :name %>:
-      <%= f.text_field :name, :class => 'form-control' %>
+        <div class = "row">
+          <div class = "col-sm-12">
+            <%= f.label :description %>:
+            <%= f.text_field :description, :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div fieldset class = "ingredients">
+        <div id="ingredients">
+          <label>Ingredients:</label>
+          <%= f.fields_for :recipe_ingredients do |builder| %>
+              <%= render 'recipe_ingredient_fields', f: builder %>
+              <div id="links">
+                <%= link_to_add_association "Add Ingredient", f, :recipe_ingredients %><br/>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div fieldset class = "instructions">
+        <div class = "row">
+          <div class = "col-sm-12">
+          <%= f.label :instructions %>:
 
-      <div id="ingredients">
-        <label>Ingredients:</label>
-        <%= f.fields_for :recipe_ingredients do |builder| %>
-            <%= render 'recipe_ingredient_fields', f: builder %>
-            <div id="links">
-              <%= link_to_add_association "add Ingredient", f, :recipe_ingredients %><br/>
-            </div>
-        <% end %>
+
+          <div class="nested-fields " id="recipe_steps">
+
+            <% unless @instructions.nil? %>
+                <% @instructions.each do |instruction| %>
+                    <%= text_field_tag 'recipe[instructions][]', instruction, class: 'instruction-field form-control' %>
+                <% end %>
+            <% else %>
+                <%= text_field_tag 'recipe[instructions][]', nil, class: 'instruction-field form-control', placeholder: 'Type the first step' %>
+            <% end %><%= link_to "Remove Step", "javascript:void(0)", class: "remove_step" %>
+          </div>
+          <div class = "col-sm-3">
+
+          </div></div>
+        </div>
+        <div class = "row">
+        <div class = "col-sm-12">
+        <%= link_to "Next Step", "javascript:void(0)", id: "new_step" %><br/>
+        </div></div>
+      </div>
+      <div class = "row special-notes">
+        <div class = "col-sm-12">
+          <%= f.label :special_notes %>:
+          <%= f.text_field :special_notes, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class = "row upload-image">
+        <div class = "col-sm-12">
+        <%= f.label :photo,'Upload new image' %>
+        <%= f.file_field :photo %>
+        </div>
       </div>
 
 
+        <div class = "row">
 
-      <%= f.label :instructions %>:
-      <div class="nested-fields form-inline" id="recipe_steps">
-        <% unless @instructions.nil? %>
-            <% @instructions.each do |instruction| %>
-                <%= text_field_tag 'recipe[instructions][]', instruction, class: 'instruction-field form-control' %>
-            <% end %>
-        <% else %>
-            <%= text_field_tag 'recipe[instructions][]', nil, class: 'instruction-field form-control', placeholder: 'Type the first step' %>
-        <% end %>
-          <%= link_to "Remove Step", "javascript:void(0)", class: "remove_step" %>
+          <div class = "col-sm-12">
+          <%= f.button "Save" %>
+          </div>
+        </div>
+      <%= link_to 'view all recipes', my_recipes_path, class: 'new_recipe' %>
       </div>
-      <%= link_to "Next Step", "javascript:void(0)", id: "new_step" %><br/>
-      <%= f.label :photo,'Upload new image' %>
-      <%= f.file_field :photo %>
-      <%= f.button "Save" %>
-    </div>
-<% end %>
-<%= link_to 'view all recipes', my_recipes_path %>
+
+  <% end %>
+
+</div>
 

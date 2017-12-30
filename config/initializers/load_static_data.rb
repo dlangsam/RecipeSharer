@@ -1,1 +1,1 @@
-PROJECT_NAME = 'SECRET iNGREDIENT'
+PROJECT_NAME = 'The Secret Ingredient'

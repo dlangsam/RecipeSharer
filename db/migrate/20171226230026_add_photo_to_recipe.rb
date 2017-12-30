@@ -4,6 +4,6 @@ class AddPhotoToRecipe < ActiveRecord::Migration[5.1]
   end
 
   def down
-    remove_attachment :recipe, :photo
+    remove_attachment :recipes, :photo
   end
 end

@@ -1,21 +1,28 @@
-<div id = "home_page">
-<%if user_signed_in? %>
-    <% current_user.recipes.all.each do |recipe| %>
-
-        <div class = "white user-item" >
+<div class = "row" id = "home_page">
+  <div class = "col-md-4"></div>
+  <div class = "col-md-4">
+    <%if user_signed_in? %>
+        <div class = "featured_recipe">
+        <% recipe = current_user.recipes.first %>
           <a href = "<%=my_recipe_url(recipe.id)%>" class = "item-link">
-            <div class = "item-box">
-              <div class = "item-content">
-                <div class = "item-desc">
-                  <h5><%= recipe.name %></h5>
-                </div>
-              </div>
+          <div class = "row">
+            <%= recipe.name.upcase %>
+          </div>
+          <% if recipe.photo.file? %>
+            <div class = "row">
+              <%= image_tag recipe.photo.url(:medium) %>
             </div>
+          <% end %>
+          <div class = "row">
+            <%= recipe.description %>
+          </div>
           </a>
         </div>
 
+
+    <% else %>
+        No recipes to show
     <% end %>
-<% else %>
-    No recipes to show
-<% end %>
+  </div>
+  <div class = "col-md-4"></div>
 </div>

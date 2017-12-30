@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20171226230026) do
     t.integer "recipe_id", null: false
     t.integer "ingredient_id", null: false
     t.integer "order"
-    t.decimal "amount"
+    t.float "amount"
     t.string "unit_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
